@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($email_err) && empty($password_err)) {
 
 
-        $sql = "SELECT id, nome, email, password FROM spettatore WHERE email = ?";
+        $sql = "SELECT id, nome, cognome, data_nascita, numero_telefono, email, created_at, password FROM spettatore WHERE email = ?";
 
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->bind_param("s", $param_email);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 //Controllo se email esiste
                 if ($stmt->num_rows == 1) {
 
-                    $stmt->bind_result($id, $nome, $email, $hashed_password);
+                    $stmt->bind_result($id, $nome, $cognome, $data_nascita, $numero_telefono, $email, $created_at, $hashed_password);
                     error_log("Password:" . $password);
                     error_log("hashed_password:" . $hashed_password);
                     if ($stmt->fetch()) {
@@ -60,8 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             //Salvo dati di sessione
                             $_SESSION['loggedin'] = true;
-                            $_SESSION['id'] = $id;
+                            $_SESSION['id_spettatore'] = $id;
                             $_SESSION['nome'] = $nome;
+                            $_SESSION['cognome'] = $cognome;
+                            $_SESSION['data_nascita'] = $data_nascita;
+                            $_SESSION['numero_telefono'] = $numero_telefono;
+                            $_SESSION['email'] = $email;
+                            $_SESSION['created_at'] = $created_at;
+
+
 
                             header("location: dashboard.php");
                         } else {
@@ -104,32 +111,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <div class="wrapper">
-        <h2>Login</h2>
-        <p>Perfavore inserisci le tue credenziali per accedere.</p>
+    <div class="container">
+        <div class="wrapper mx-auto ">
+            <h2>Login</h2>
+            <p>Perfavore inserisci le tue credenziali per accedere.</p>
 
-        <?php
-        if (!empty($login_err)) {
-            echo '<div class="alert alert-danger">' . $login_err . '</div>';
-        }
-        ?>
+            <?php
+            if (!empty($login_err)) {
+                echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            }
+            ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Login">
-            </div>
-            <p>Non hai un account? <a href="register.php">Crealo ora</a>.</p>
-        </form>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </div>
+                <p>Non hai un account? <a href="register.php">Crealo ora</a>.</p>
+            </form>
+        </div>
     </div>
 </body>
 

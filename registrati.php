@@ -148,54 +148,56 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
-    <div class="wrapper">
-        <h2>Registrazione</h2>
-        <p>Perfavore inserisci i dati per creare un accoutn.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+    <div class="container">
+        <div class="wrapper mx-auto ">
+            <h2>Registrazione</h2>
+            <p>Perfavore inserisci i dati per creare un accoutn.</p>
+            <form class="justify-content-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" name="nome" class="form-control <?php echo (!empty($nome_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nome; ?>">
-                <span class="invalid-feedback"><?php echo $nome_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Cognome</label>
-                <input type="text" name="cognome" class="form-control <?php echo (!empty($cognome_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cognome; ?>">
-                <span class="invalid-feedback"><?php echo $cognome_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Data di nascita</label>
-                <input type="date" name="data" class="form-control <?php echo (!empty($data_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $data; ?>">
-                <span class="invalid-feedback"><?php echo $data_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Numero di telefono</label>
-                <input type="text" name="numero" class="form-control <?php echo (!empty($numero_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $numero; ?>">
-                <span class="invalid-feedback"><?php echo $numero_err; ?></span>
-            </div>
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" class="form-control <?php echo (!empty($nome_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nome; ?>">
+                    <span class="invalid-feedback"><?php echo $nome_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Cognome</label>
+                    <input type="text" name="cognome" class="form-control <?php echo (!empty($cognome_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $cognome; ?>">
+                    <span class="invalid-feedback"><?php echo $cognome_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Data di nascita</label>
+                    <input type="date" name="data" class="form-control <?php echo (!empty($data_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $data; ?>">
+                    <span class="invalid-feedback"><?php echo $data_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Numero di telefono</label>
+                    <input type="text" name="numero" class="form-control <?php echo (!empty($numero_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $numero; ?>">
+                    <span class="invalid-feedback"><?php echo $numero_err; ?></span>
+                </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Conferma Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Registrati">
-                <input type="reset" class="btn btn-secondary ml-2" value="Cancella">
-            </div>
-            <p>Già hai un account? <a href="login.php">Fai il login</a>.</p>
-        </form>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                    <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Conferma Password</label>
+                    <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                    <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Registrati">
+                    <input type="reset" class="btn btn-secondary ml-2" value="Cancella">
+                </div>
+                <p>Già hai un account? <a href="login.php">Fai il login</a>.</p>
+            </form>
+        </div>
     </div>
 </body>
 
